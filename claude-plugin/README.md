@@ -123,8 +123,8 @@ The plugin — this directory's manifest, commands, agent, skill and wrapper
 scripts — is [MIT licensed](LICENSE).
 
 That covers the plugin only. The OCRDeskew application and its `ocrdeskew`
-binary are proprietary and licensed separately; see
-[ocrdeskew.com](https://ocrdeskew.com).
+binary are proprietary and licensed separately; see [NOTICE](NOTICE) for the
+exact scope, and [ocrdeskew.com](https://ocrdeskew.com) for OCRDeskew's terms.
 
 ## Using it without the plugin
 

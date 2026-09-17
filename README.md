@@ -76,5 +76,6 @@ skill's reference docs:
 
 ## License
 
-[MIT](LICENSE), covering this plugin only. The OCRDeskew application and its
-`ocrdeskew` binary are proprietary and licensed separately.
+[MIT](LICENSE), covering this plugin only — see [NOTICE](NOTICE) for the exact
+scope. The OCRDeskew application and its `ocrdeskew` binary are proprietary and
+licensed separately.

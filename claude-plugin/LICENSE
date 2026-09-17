@@ -19,19 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-SCOPE OF THIS LICENSE
-
-The MIT license above applies ONLY to the contents of this `claude-plugin`
-directory: the Claude Code plugin manifest, commands, agent definitions, skill
-documentation, and the Python wrapper scripts in `skills/ocrdeskew/scripts/`.
-
-It does NOT apply to the OCRDeskew application or its `ocrdeskew` command-line
-program, which are proprietary software licensed separately. Nothing in this
-license grants any right to use, copy, modify, or distribute OCRDeskew itself.
-
-This plugin performs no OCR of its own. It orchestrates the separately licensed
-`ocrdeskew` binary, which must be installed and licensed by the user. See
-https://ocrdeskew.com for OCRDeskew's terms and pricing.
