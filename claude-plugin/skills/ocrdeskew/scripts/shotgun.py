@@ -181,7 +181,16 @@ def main(argv=None):
 
     args = parser.parse_args(argv)
     if not shutil.which("ocrdeskew"):
-        raise SystemExit("ocrdeskew is not installed or not on PATH.")
+        raise SystemExit(
+            "ocrdeskew is not installed, or not on PATH.\n"
+            "\n"
+            "This plugin drives the OCRDeskew CLI; it does no OCR of its own.\n"
+            "Download OCRDeskew and start a 20-day free trial, or activate a\n"
+            "licence, at https://ocrdeskew.com\n"
+            "\n"
+            "The macOS app installs the CLI to /usr/local/bin. Once it is in\n"
+            "place, `ocrdeskew --help` should print usage."
+        )
     return args.func(args)
 
 

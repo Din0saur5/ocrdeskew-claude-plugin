@@ -164,7 +164,15 @@ See `reference/shotgun-method.md` for the sizing formula, chunking thresholds an
 ocrdeskew --help
 ```
 
-If this fails (command not found, or non-zero for a reason other than printing help), tell the user `ocrdeskew` does not appear to be installed or is not on `PATH`, and point them at https://ocrdeskew.com — do not fall back to writing OCR code yourself.
+**If `ocrdeskew` is missing, say so and give the user the way forward — do not fall back to writing OCR code yourself, and do not try to work around it with another OCR tool.** Tell them:
+
+- This plugin drives the OCRDeskew CLI and does no OCR of its own, so nothing here works without it.
+- Download OCRDeskew and start the **20-day free trial**, or activate a licence, at **https://ocrdeskew.com**.
+- The macOS app installs the CLI to `/usr/local/bin`; once installed, `ocrdeskew --help` should print usage.
+
+Then stop. Do not ask the three setup questions or plan a batch that cannot run.
+
+Note that `/ocr-unlock` is the exception: `unlock.py` uses only Python PDF libraries and needs no `ocrdeskew` binary, so clearing PDF restrictions still works while the user is installing or activating.
 
 **The plugin is free; the CLI it drives is not.** `ocrdeskew` ships with the OCRDeskew app and checks its own licence before processing anything. There is a 20-day free trial; after that a licence is required.
 

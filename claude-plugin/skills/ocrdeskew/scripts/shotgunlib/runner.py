@@ -36,7 +36,8 @@ def _log(message, quiet=False):
 def run_unit(unit, out_path, quality, lang, timeout=DEFAULT_UNIT_TIMEOUT):
     """Run one `ocrdeskew` invocation. Returns (ok, payload_or_error)."""
     if not OCRDESKEW:
-        return False, {"error": "ocrdeskew is not installed or not on PATH"}
+        return False, {"error": "ocrdeskew is not installed or not on PATH — "
+                                "download it at https://ocrdeskew.com", "fatal": True}
 
     cmd = [
         OCRDESKEW, str(unit.path),
