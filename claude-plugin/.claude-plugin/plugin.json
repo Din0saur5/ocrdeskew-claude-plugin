@@ -1,6 +1,7 @@
 {
   "name": "ocrdeskew",
   "description": "Repair OCR text layers and produce searchable PDFs with the local OCRDeskew CLI, including parallel batch processing sized to the machine, PDF restriction clearing, and triage of low-confidence results. Runs fully locally with no upload. Free plugin; requires OCRDeskew (20-day trial, then a licence) \u2014 see https://ocrdeskew.com.",
+  "version": "1.0.0",
   "author": {
     "name": "Daniel Hackworth",
     "email": "sales@ocrdeskew.com"
