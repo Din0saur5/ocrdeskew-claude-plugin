@@ -1,4 +1,8 @@
-# OCRDeskew for Claude Code
+# OCRDeskew for Claude Code and Codex
+
+**Codex / ChatGPT desktop:** see [CODEX.md](CODEX.md) for the local plugin,
+installation, and equivalent audit, batch, unlock, and triage skills. Both
+integrations share the processing helpers in this repository.
 
 The official [Claude Code](https://claude.com/claude-code) plugin for
 [OCRDeskew](https://ocrdeskew.com) — repair OCR text layers, produce searchable

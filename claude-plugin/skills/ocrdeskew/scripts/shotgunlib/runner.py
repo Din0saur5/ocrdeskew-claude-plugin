@@ -7,6 +7,7 @@ allowed to overwrite the original — after every one of its units succeeded and
 the assembled PDF verified against the original page count.
 """
 
+import hashlib
 import json
 import os
 import shutil
@@ -120,12 +121,29 @@ def _prepare_units(plans, workdir):
             continue
         if plan.split:
             ranges = [u.page_range for u in plan.units]
-            dest = chunk_root / plan.source.stem
+            dest = chunk_root / _source_key(plan.source)
             chunks = pdfops.split_pdf(plan.source, ranges, dest)
             for unit, chunk in zip(plan.units, chunks):
                 unit.path = chunk
         units.extend(plan.units)
     return units
+
+
+def _source_key(source):
+    """Keep same-named files from different folders separate in scratch space."""
+    return hashlib.sha256(str(source.resolve()).encode("utf-8")).hexdigest()
+
+
+def _unused_path(candidate):
+    """Preserve earlier outputs and backups, including those from this batch."""
+    if not candidate.exists():
+        return candidate
+    counter = 2
+    while True:
+        numbered = candidate.with_name(f"{candidate.stem}-{counter}{candidate.suffix}")
+        if not numbered.exists():
+            return numbered
+        counter += 1
 
 
 def _aggregate(entries, pages):
@@ -165,17 +183,17 @@ def _place_output(produced, plan, destructive, out_dir, backup_dir):
             if backup_dir:
                 backup_dir = Path(backup_dir)
                 backup_dir.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(source, backup_dir / source.name)
+                shutil.copy2(source, _unused_path(backup_dir / source.name))
             os.replace(str(produced), str(source))
             return source, "original overwritten in place"
         # An image cannot hold a PDF text layer, so the source image is kept.
-        final = source.with_suffix(".pdf")
+        final = _unused_path(source.with_suffix(".pdf"))
         os.replace(str(produced), str(final))
         return final, "image converted to PDF; original image kept (in-place replace applies to PDFs only)"
 
     target_dir = Path(out_dir) if out_dir else source.parent
     target_dir.mkdir(parents=True, exist_ok=True)
-    final = target_dir / f"{source.stem}{SUFFIX}.pdf"
+    final = _unused_path(target_dir / f"{source.stem}{SUFFIX}.pdf")
     os.replace(str(produced), str(final))
     return final, note
 
@@ -202,7 +220,7 @@ def execute(plans, workers, quality, lang, destructive=False, out_dir=None,
         with ThreadPoolExecutor(max_workers=workers) as pool:
             futures = {}
             for unit in units:
-                out_path = out_root / f"{unit.source.stem}__u{unit.index:04d}.pdf"
+                out_path = out_root / f"{_source_key(unit.source)}__u{unit.index:04d}.pdf"
                 outputs[id(unit)] = out_path
                 futures[pool.submit(run_unit, unit, out_path, quality, lang, timeout)] = unit
 
@@ -242,7 +260,7 @@ def execute(plans, workers, quality, lang, destructive=False, out_dir=None,
             produced_paths = [Path(p["output_path"]) for _u, _ok, p in unit_records]
 
             if plan.split:
-                assembled = workdir / f"{plan.source.stem}__merged.pdf"
+                assembled = workdir / f"{_source_key(plan.source)}__merged.pdf"
                 try:
                     pdfops.merge_pdfs(produced_paths, assembled)
                 except pdfops.PdfError as exc:

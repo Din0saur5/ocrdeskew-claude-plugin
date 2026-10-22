@@ -1,6 +1,6 @@
-OCRDeskew for Claude Code — scope of the MIT license
+OCRDeskew for Claude Code and Codex — scope of the MIT license
 
-The MIT license in LICENSE applies ONLY to this Claude Code plugin: the plugin
+The MIT license in LICENSE applies ONLY to these AI-assistant plugins: the plugin
 manifest, commands, agent definitions, skill documentation, and the Python
 wrapper scripts under claude-plugin/skills/ocrdeskew/scripts/.
 

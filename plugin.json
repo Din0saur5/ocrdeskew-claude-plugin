@@ -1,0 +1,31 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ocrdeskew",
+  "version": "0.1.0",
+  "description": "Local OCRDeskew workflows for audit, batch OCR, PDF unlocking, parallel processing, and result triage.",
+  "author": { "name": "Daniel Hackworth", "url": "https://ocrdeskew.com" },
+  "homepage": "https://ocrdeskew.com",
+  "repository": "https://github.com/Din0saur5/ocrdeskew-claude-plugin",
+  "license": "MIT",
+  "keywords": ["ocr", "pdf", "deskew", "local", "legal"],
+  "extensions": {
+    "com.openai": {
+      "requires_local_executor": true,
+      "interface": {
+        "displayName": "OCRDeskew",
+        "shortDescription": "Audit and repair scanned PDFs locally",
+        "longDescription": "Drive the installed OCRDeskew CLI, including parallel batch processing, PDF unlocking, and failure triage. Requires local command execution; OCR requires an OCRDeskew trial or license.",
+        "developerName": "Daniel Hackworth",
+        "category": "Productivity",
+        "capabilities": ["Read", "Write"],
+        "websiteURL": "https://ocrdeskew.com",
+        "privacyPolicyURL": "https://ocrdeskew.com/privacy",
+        "termsOfServiceURL": "https://ocrdeskew.com/terms-and-conditions",
+        "defaultPrompt": [
+          "Use OCRDeskew to audit this folder without changing my original files.",
+          "Use OCRDeskew to repair this production with parallel batch processing."
+        ]
+      }
+    }
+  }
+}
