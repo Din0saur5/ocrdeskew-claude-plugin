@@ -1,0 +1,12 @@
+{
+  "name": "ocrdeskew-plugins",
+  "interface": { "displayName": "OCRDeskew Plugins" },
+  "plugins": [
+    {
+      "name": "ocrdeskew",
+      "source": { "source": "local", "path": "./" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Productivity"
+    }
+  ]
+}
