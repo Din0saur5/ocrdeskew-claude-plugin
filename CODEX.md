@@ -8,13 +8,13 @@ The portable root `plugin.json` exposes five Codex skills: `ocrdeskew`,
 the Python helpers in `claude-plugin/skills/ocrdeskew/scripts/`; there is no
 second OCR implementation or duplicated helper tree.
 
-## Local preview install
+## Install
 
 Use a current ChatGPT desktop/Codex client with local plugin support. The repo
 marketplace is `.agents/plugins/marketplace.json`. From a supported Codex CLI:
 
 ```bash
-codex plugin marketplace add /absolute/path/to/ocrdeskew-claude-plugin
+codex plugin marketplace add Din0saur5/ocrdeskew-claude-plugin --ref main
 ```
 
 Open the Plugins Directory in the desktop app, choose **OCRDeskew Plugins**,
@@ -23,8 +23,12 @@ Codex CLI may not support `plugin marketplace`; update to a client with local
 plugin support before using this command. This repository entry makes the
 plugin available; it does not automatically enable it or publish a public listing.
 
-After the change has landed on the default branch, Git-based installation can
-use `codex plugin marketplace add Din0saur5/ocrdeskew-claude-plugin`.
+The public repository marketplace is available to anyone with a supported local
+client. It is separate from OpenAI’s reviewed public Plugins Directory.
+
+Alternatively, download `ocrdeskew-codex-plugin.zip` from the repository’s
+[latest Codex release](https://github.com/Din0saur5/ocrdeskew-claude-plugin/releases/latest).
+For local development, add the checkout path instead of the GitHub repository.
 
 Try these in Codex (or select the corresponding skill in the desktop app):
 

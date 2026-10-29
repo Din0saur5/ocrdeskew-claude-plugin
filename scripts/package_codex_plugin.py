@@ -15,6 +15,7 @@ def package(destination):
     required = [ROOT / name for name in ("plugin.json", "LICENSE", "NOTICE", "CODEX.md")]
     directories = [
         ROOT / "skills",
+        ROOT / "assets",
         ROOT / "claude-plugin/skills/ocrdeskew/scripts",
         ROOT / "claude-plugin/skills/ocrdeskew/reference",
     ]

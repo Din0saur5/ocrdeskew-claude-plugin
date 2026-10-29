@@ -122,11 +122,16 @@ class PluginTests(unittest.TestCase):
         with ZipFile(archive_path) as archive:
             names = set(archive.namelist())
             self.assertIn("plugin.json", names)
+            self.assertIn("assets/ocrdeskew.png", names)
             self.assertIn("skills/ocr-audit/SKILL.md", names)
             self.assertIn("claude-plugin/skills/ocrdeskew/scripts/shotgunlib/runner.py", names)
             self.assertFalse(any(".git/" in n or "__pycache__" in n for n in names))
             manifest = json.loads(archive.read("plugin.json"))
             self.assertTrue(manifest["extensions"]["com.openai"]["requires_local_executor"])
+            interface = manifest["extensions"]["com.openai"]["interface"]
+            self.assertLessEqual(len(interface["shortDescription"]), 30)
+            for field in ("logo", "composerIcon"):
+                self.assertIn(interface[field].removeprefix("./"), names)
             archive.extractall(self.root / "unpacked")
         skill = self.root / "unpacked/skills/ocrdeskew"
         self.assertTrue((skill / "../../claude-plugin/skills/ocrdeskew/scripts/shotgun.py").resolve().is_file())
